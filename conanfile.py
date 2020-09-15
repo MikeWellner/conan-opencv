@@ -153,7 +153,7 @@ class OpenCVConan(ConanFile):
             self.requires.add('openjpeg/2.3.1')
         if self.options.jpeg2000 == "jasper":
             self.requires.add('jasper/2.0.14')
-            self.options["jasper"].jpegturbo = self.options.jpegturbo
+            self.options["jasper"].with_libjpeg = "libjpeg-turbo" if self.options.jpegturbo else "libjpeg"
         if not tools.cross_building(self.settings) and self.options.openexr:
             # OpenEXR currently doesn't support cross-building
             self.requires.add('openexr/2.3.0')
